@@ -23,6 +23,7 @@ function App() {
 
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [budget, setBudget] = useState(0);
   const [money, setMoney] = useState(0);
   const [bought, setBought] = useState(0);
 
@@ -63,6 +64,7 @@ function App() {
           // Fetch initial values
           const price = await fruitInstance.methods.read_price().call();
           const quantity = await fruitInstance.methods.read_quantity().call();
+          const budget = await fruitInstance.methods.read_budget().call();
           const money = await buyerInstance.methods.read_money().call();
           const bought = await buyerInstance.methods.read_bought().call();
           const owner = await fruitInstance.methods.owner().call();
@@ -80,6 +82,7 @@ function App() {
           setBuyer(buyerInstance);
           setPrice(price);
           setQuantity(quantity);
+          setBudget(budget);
           setMoney(money);
           setBought(bought);
           // console.log("Buyer Money:", money);
@@ -165,6 +168,7 @@ function App() {
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h4" gutterBottom>Fruit Contract</Typography>
+        <Typography>Budget: {budget / 1e18} ETH</Typography>
         <Typography>Price: {price / 1e18} ETH</Typography>
         <Typography>Quantity: {quantity}</Typography>
 
